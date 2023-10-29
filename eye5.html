@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+	html, body, #app {
+	    width: 100vw;
+	    height: 100vh;
+	    margin: 0;
+	    padding: 0;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	}
+
+	#middle {
+		width: 1px;
+		height: 1px;
+		background-color: #000;
+		border-radius: 100px;
+		position: relative;
+		outline: 2px solid;
+	}
+
+	#blind {
+		width: 1px;
+		height: 1px;
+		outline: 75px solid;
+		background-color: #000;
+		border-radius: 100px;
+
+		position: absolute;
+		right: 680px;
+	}
+
+	#search {
+		width: 1px;
+		height: 1px;
+		outline: 10px solid;
+		background-color: #000;
+		border-radius: 100px;
+
+		position: absolute;
+	}
+
+	.show {
+		animation-name: show;
+		animation-duration: 1s;
+		animation-fill-mode: forwards;
+		opacity: 1;
+	}
+
+	@keyframes show {
+	  0% {
+	    opacity: 1;
+	    outline-width: 2px;
+	  }
+
+	  20% {
+	    opacity: 1;
+	  }
+
+	  21% {
+	    opacity: 0;
+	  }
+
+	  39% {
+	  	opacity: 0;	
+	  	outline-width: 2px;
+	  }
+	  40% {
+	    opacity: 1;
+	    outline-width: 20px;
+	  }
+
+	  99% {
+	    opacity: 1;
+	  }
+	  100% {
+	    opacity: 0;
+	  }
+	}
+
+	#app {
+		background-color: #000;
+	}
+
+	#middle, #search, #blind {
+		background-color: #00ff00;	
+		outline-color: #00ff00;
+	}
+</style>
+</head>
+<body>
+<div id="app">
+	<div id="middle">
+		<div id="search" class="show"></div>
+		<div id="blind"></div>
+	</div>
+</div>
+
+<script>
+	const el = document.getElementById('search')
+
+	function getRandomArbitrary(min, max) {
+		return 0
+	  return Math.random() * (max - min) + min;
+	}
+
+	const run = () => {
+
+		el.style.top = 84 + getRandomArbitrary(-15, 15)  + 'px'
+		el.style.right = 150 + getRandomArbitrary(-15, 15) + 'px'
+
+		el.style.animation = 'none';
+		el.offsetHeight; /* trigger reflow */
+		el.style.animation = null; 
+		const time = 2 * 1000 + getRandomArbitrary(0, 2000)
+		setTimeout(run, time)
+	}
+
+	run()
+	
+
+</script>
+</body>
+</html>
